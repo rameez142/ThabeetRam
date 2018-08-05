@@ -1,8 +1,3 @@
-// ====================================================
-// More Templates: https://www.ebenmonney.com/templates
-// Email: support@ebenmonney.com
-// ====================================================
-
 using AspNet.Security.OpenIdConnect.Primitives;
 using AutoMapper;
 using DAL;
