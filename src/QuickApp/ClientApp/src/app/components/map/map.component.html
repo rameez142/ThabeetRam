@@ -1,32 +1,61 @@
 <div class="container">
-  <header class="pageHeader">
-    <h3><i class="fa fa-handshake-o fa-lg page-caption" aria-hidden="true"></i> Track Vehicle</h3>
-  </header>
 
 
+
+  <table>
+    <tr>
+      <td>
+        <div id='menu'>
+          <input id='basic' type='radio' name='rtoggle' value='basic' (click)="chngstyle($event)" />
+          <label for='basic'>basic</label>
+          <input id='streets' type='radio' name='rtoggle' value='streets' (click)="chngstyle($event)" />
+          <label for='streets'>streets</label>
+          <input id='bright' type='radio' name='rtoggle' value='bright' (click)="chngstyle($event)" />
+          <label for='bright'>bright</label>
+          <input id='light' type='radio' name='rtoggle' value='light' (click)="chngstyle($event)" />
+          <label for='light'>light</label>
+          <input id='dark' type='radio' name='rtoggle' value='dark' (click)="chngstyle($event)" />
+          <label for='dark'>dark</label>
+          <input id='satellite' type='radio' name='rtoggle' value='satellite' checked='checked' (click)="chngstyle($event)" />
+          <label for='satellite'>satellite</label>
+        </div>
+      </td>
+      <td>
+        <input type="checkbox" [(ngModel)]="filter2" (ngModelChange)="onFilterChange($event)" /> Flag
+      </td>
+
+    </tr>
+    <tr>
+      <td>
+        <table>
+          <tr>
+            <td><button class="col-sm-0" (click)="SimulateDevice()">Simulate Device</button></td>
+            <td>
+              <div data-role="rangeslider" style="width:100px;">
+                <input type="range" width="50" min="2" max="10" value="1" (input)="RngIn()" id="myRange" #ipt>
+              </div>
+            </td>
+            <td>
+              <button (click)="stopSimulateDevice()">{{sim_txt}}</button>
+            </td>
+          </tr>
+        </table>
+      </td>
+
+
+      <td>
+        <button (click)="Simulate_By_Route_Device()">Simulate Device By Route</button>
+      </td>
+    </tr>
+
+  </table>
   <div>
-    <div id='sidebar'>
-      <button (click)="onClickMe()">Click me!</button>
-      <button (click)="SimulateDevice()">Simulate Device</button>
-      <button (click)="Simulate_By_Route_Device()">Simulate Device By Route</button>&nbsp;
-      <input type="checkbox" [ngModel]="filter" (ngModelChange)="onFilterChange($event)" /> Flag
-    </div>
-    <div id='menu'>
-      <input id='basic' type='radio' name='rtoggle' value='basic' (click)="chngstyle($event)" />
-      <label for='basic'>basic</label>
-      <input id='streets' type='radio' name='rtoggle' value='streets' (click)="chngstyle($event)" />
-      <label for='streets'>streets</label>
-      <input id='bright' type='radio' name='rtoggle' value='bright' (click)="chngstyle($event)" />
-      <label for='bright'>bright</label>
-      <input id='light' type='radio' name='rtoggle' value='light' (click)="chngstyle($event)" />
-      <label for='light'>light</label>
-      <input id='dark' type='radio' name='rtoggle' value='dark' (click)="chngstyle($event)" />
-      <label for='dark'>dark</label>
-      <input id='satellite' type='radio' name='rtoggle' value='satellite' checked='checked' (click)="chngstyle($event)" />
-      <label for='satellite'>satellite</label>
-    </div>
+
+
+
+
+
     <div id='map'></div>
 
 
-  </div>
-</div>
+
