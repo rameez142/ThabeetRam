@@ -35,7 +35,7 @@ export class MapComponent implements OnInit {
   public layerList: any;
   public inputs: any;
   public layerId: string = 'satellite';
-
+  public filter2: boolean;
   public saveUsername: boolean = true;
   public mapdiv = document.getElementById("map");
   public sim_txt: string = 'Pause Simulation';
@@ -263,7 +263,7 @@ export class MapComponent implements OnInit {
   }
 
 
-  onFilterChange(eve: any) {
+  onFilterChange(eve: boolean) {
     filter2 = !filter2;
   }
 
@@ -375,9 +375,7 @@ export class MapComponent implements OnInit {
   }
 
   addMarker(e) {
-    //if()
-    //e.stopPropagation();
-    console.log(filter2);
+  
 
     if (filter2 == true) {
       var e1 = document.createElement('div');
