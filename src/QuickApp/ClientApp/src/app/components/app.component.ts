@@ -35,7 +35,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   shouldShowLoginModal: boolean;
   removePrebootScreen: boolean;
   newNotificationCount = 0;
-  appTitle = "MOI Asset Tracking";
+  appTitle = "Thaabet";
   appLogo = require("../assets/images/vt2.png");
 
   stickyToasties: number[] = [];

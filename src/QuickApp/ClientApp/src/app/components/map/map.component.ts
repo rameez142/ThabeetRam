@@ -35,7 +35,7 @@ export class MapComponent implements OnInit {
   public layerList: any;
   public inputs: any;
   public layerId: string = 'satellite';
-
+public filter2: boolean;
   public saveUsername: boolean = true;
   public mapdiv = document.getElementById("map");
   public sim_txt: string = 'Pause Simulation';
