@@ -62,9 +62,10 @@ import { UserPreferencesComponent } from "./components/controls/user-preferences
 import { UsersManagementComponent } from "./components/controls/users-management.component";
 import { RolesManagementComponent } from "./components/controls/roles-management.component";
 import { RoleEditorComponent } from "./components/controls/role-editor.component";
+import { MapLeftNavDemoComponent } from "./components/controls/map-left-nav.component";
 
 import { MapComponent } from './components/map/map.component';
-
+import { MapViewerComponent } from './components/mapviewer/mapviewer.component';
 
 
 @NgModule({
@@ -98,7 +99,7 @@ import { MapComponent } from './components/map/map.component';
     OrdersComponent,
     SettingsComponent,
     UsersManagementComponent, UserInfoComponent, UserPreferencesComponent,
-    RolesManagementComponent, RoleEditorComponent,
+    RolesManagementComponent, RoleEditorComponent, MapLeftNavDemoComponent,
     AboutComponent,
     NotFoundComponent,
     NotificationsViewerComponent,
@@ -112,7 +113,8 @@ import { MapComponent } from './components/map/map.component';
     BootstrapSelectDirective,
     BootstrapDatepickerDirective,
     GroupByPipe,
-    MapComponent
+    MapComponent,
+    MapViewerComponent
   ],
   providers: [
     { provide: 'BASE_URL', useFactory: getBaseUrl },

@@ -17,6 +17,7 @@ import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { MapComponent } from './components/map/map.component';
+import { MapViewerComponent } from './components/mapviewer/mapviewer.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent, canActivate: [AuthGuard], data: { title: "Home" } },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: "settings", component: SettingsComponent, canActivate: [AuthGuard], data: { title: "Settings" } },
   { path: "about", component: AboutComponent, data: { title: "About Us" } },
   { path: "maptracking", component: MapComponent, data: { title: "Tracking" } },
+  { path: "mapviewer", component: MapViewerComponent, data: { title: "Viewer" } },
   { path: "home", redirectTo: "/", pathMatch: "full" },
   { path: "**", component: NotFoundComponent, data: { title: "Page Not Found" } }
 ];
