@@ -1,7 +1,3 @@
-// ====================================================
-// More Templates: https://www.ebenmonney.com/templates
-// Email: support@ebenmonney.com
-// ====================================================
 
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -54,10 +50,10 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   showContent(anchor: string) {
+    
     if ((this.isFragmentEquals(anchor, this.usersTab) && !this.canViewUsers) ||
       (this.isFragmentEquals(anchor, this.rolesTab) && !this.canViewRoles))
       return;
-
     this.tab.show(`#${anchor || this.profileTab}Tab`);
   }
 
@@ -83,7 +79,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.isRolesActivated = activeTab == this.rolesTab;
     this.isViewDefinitionActivated = activeTab == this.viewdefinitionTab;
     this.isProgramSettingActivated = activeTab == this.programsettingTab;
-    
      
   }
 
