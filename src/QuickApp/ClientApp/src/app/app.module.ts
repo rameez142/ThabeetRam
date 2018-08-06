@@ -61,6 +61,11 @@ import { UserInfoComponent } from "./components/controls/user-info.component";
 import { UserPreferencesComponent } from "./components/controls/user-preferences.component";
 import { UsersManagementComponent } from "./components/controls/users-management.component";
 import { RolesManagementComponent } from "./components/controls/roles-management.component";
+import { ViewDefinitionComponent } from "./components/controls/view-definition.component";
+import { ProgramSettingComponent } from "./components/controls/program-setting.component";
+
+
+
 import { RoleEditorComponent } from "./components/controls/role-editor.component";
 import { MapLeftNavDemoComponent } from "./components/controls/map-left-nav.component";
 
@@ -98,8 +103,8 @@ import { MapViewerComponent } from './components/mapviewer/mapviewer.component';
     ProductsComponent,
     OrdersComponent,
     SettingsComponent,
-    UsersManagementComponent, UserInfoComponent, UserPreferencesComponent,
-    RolesManagementComponent, RoleEditorComponent, MapLeftNavDemoComponent,
+    UsersManagementComponent, UserInfoComponent, UserPreferencesComponent,ProgramSettingComponent,
+    RolesManagementComponent, RoleEditorComponent, MapLeftNavDemoComponent, ViewDefinitionComponent,
     AboutComponent,
     NotFoundComponent,
     NotificationsViewerComponent,

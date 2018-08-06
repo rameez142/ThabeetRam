@@ -25,14 +25,16 @@ export class SettingsComponent implements OnInit, OnDestroy {
   isPreferencesActivated = false;
   isUsersActivated = false;
   isRolesActivated = false;
-
+  isViewDefinitionActivated = false;
+  isProgramSettingActivated = false;
   fragmentSubscription: any;
 
   readonly profileTab = "profile";
   readonly preferencesTab = "preferences";
   readonly usersTab = "users";
   readonly rolesTab = "roles";
-
+  readonly viewdefinitionTab = "viewdefinition";
+  readonly programsettingTab = "programsetting";
 
   @ViewChild("tab")
   tab: BootstrapTabDirective;
@@ -79,6 +81,10 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.isPreferencesActivated = activeTab == this.preferencesTab;
     this.isUsersActivated = activeTab == this.usersTab;
     this.isRolesActivated = activeTab == this.rolesTab;
+    this.isViewDefinitionActivated = activeTab == this.viewdefinitionTab;
+    this.isProgramSettingActivated = activeTab == this.programsettingTab;
+    
+     
   }
 
 
