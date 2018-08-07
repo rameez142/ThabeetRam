@@ -36,14 +36,19 @@
       "Profile": "Profile",
       "Preferences": "Preferences",
       "Users": "Users",
-      "Roles": "Roles"
+      "Roles": "Roles",
+      "ViewDefinition": "View Definition",
+      "ProgramSettings": "Program Setting"
     },
     "header": {
       "UserProfile": "User Profile",
       "UserPreferences": "User Preferences",
       "UserDepartments": "User Departments",
       "UsersManagements": "Users Managements",
-      "RolesManagement": "Roles Management"
+      "RolesManagement": "Roles Management",
+      "ViewDefinition": "View Definition",
+      "ProgramSettings": "Program Setting"
+
     }
   },
   "preferences": {

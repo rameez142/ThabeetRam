@@ -17,7 +17,14 @@
         </li>
         <li [hidden]="!canViewRoles">
           <a id="rolesTab" [routerLink]="[]" fragment="roles" href="#roles" data-toggle="tab"><i class="fa fa-shield fa-fw" aria-hidden="true"></i> {{'settings.tab.Roles' | translate}}</a>
+        </li>        
+        <li [hidden]="!canViewRoles">
+          <a id="viewdefinitionTab" [routerLink]="[]" fragment="viewdefinition" href="#viewdefinition" data-toggle="tab"><i class="fa fa-shield fa-fw" aria-hidden="true"></i> {{'settings.tab.ViewDefinition' | translate}}</a>
         </li>
+        <li [hidden]="!canViewRoles">
+          <a id="programsettingTab" [routerLink]="[]" fragment="programsetting" href="#programsetting" data-toggle="tab"><i class="fa fa-shield fa-fw" aria-hidden="true"></i> {{'settings.tab.ProgramSettings' | translate}}</a>
+        </li>
+        
       </ul>
     </div>
     <div class="col-sm-10">
@@ -51,6 +58,21 @@
           <hr class="separator-hr" />
           <div [@fadeInOut] *ngIf="canViewRoles && isRolesActivated" class="content-container">
             <roles-management></roles-management>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="viewdefinition">
+          <h4>{{'settings.header.ViewDefinition' | translate}}</h4>
+          <hr class="separator-hr" />
+          <div [@fadeInOut]  *ngIf="canViewRoles && isViewDefinitionActivated" class="content-container">
+            <view-definition></view-definition>
+          </div>
+        </div>
+        <div class="tab-pane" id="programsetting">
+          <h4>{{'settings.header.ProgramSettings' | translate}}</h4>
+          <hr class="separator-hr" />
+          <div [@fadeInOut] *ngIf="canViewRoles && isProgramSettingActivated" class="content-container">
+            <program-setting></program-setting>
           </div>
         </div>
       </div>
