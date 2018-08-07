@@ -1,8 +1,10 @@
-
+// Flow Of Tabs
+//1. Show Content
+//2. Directive SHow
+//3. ShowBSTab
+//4. OnShowTab
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
-
 import { fadeInOut } from '../../services/animations';
 import { BootstrapTabDirective } from "../../directives/bootstrap-tab.directive";
 import { AccountService } from "../../services/account.service";
@@ -42,6 +44,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.fragmentSubscription = this.route.fragment.subscribe(anchor => this.showContent(anchor));
+    
   }
 
 
@@ -49,8 +52,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.fragmentSubscription.unsubscribe();
   }
 
-  showContent(anchor: string) {
-    
+  showContent(anchor: string) {    
     if ((this.isFragmentEquals(anchor, this.usersTab) && !this.canViewUsers) ||
       (this.isFragmentEquals(anchor, this.rolesTab) && !this.canViewRoles))
       return;
@@ -70,7 +72,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
 
-  onShowTab(event) {
+  onShowTab(event) {    
     let activeTab = event.target.hash.split("#", 2).pop();
 
     this.isProfileActivated = activeTab == this.profileTab;

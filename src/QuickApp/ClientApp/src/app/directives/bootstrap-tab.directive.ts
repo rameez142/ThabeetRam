@@ -26,7 +26,7 @@ export class BootstrapTabDirective implements OnDestroy {
   constructor(private el: ElementRef, private zone: NgZone) {
 
     this.tabShownSubscription = fromEvent($(this.el.nativeElement), 'show.bs.tab')
-      .subscribe((e: any) => {
+      .subscribe((e: any) => {        
         this.runInZone(() => this.showBSTab.emit({ type: e.type, target: e.target, relatedTarget: e.relatedTarget }));
       });
 
@@ -50,7 +50,7 @@ export class BootstrapTabDirective implements OnDestroy {
   }
 
 
-  show(selector: string) {
-    $(selector).tab('show');
+  show(selector: string) {   
+    $(selector).tab('show');    
   }
 }

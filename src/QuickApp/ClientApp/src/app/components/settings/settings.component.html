@@ -64,14 +64,14 @@
         <div class="tab-pane" id="viewdefinition">
           <h4>{{'settings.header.ViewDefinition' | translate}}</h4>
           <hr class="separator-hr" />
-          <div [@fadeInOut] *ngIf="canViewRoles && isRolesActivated" class="content-container">
+          <div [@fadeInOut]  *ngIf="canViewRoles && isViewDefinitionActivated" class="content-container">
             <view-definition></view-definition>
           </div>
         </div>
         <div class="tab-pane" id="programsetting">
           <h4>{{'settings.header.ProgramSettings' | translate}}</h4>
           <hr class="separator-hr" />
-          <div [@fadeInOut] *ngIf="canViewRoles && isRolesActivated" class="content-container">
+          <div [@fadeInOut] *ngIf="canViewRoles && isProgramSettingActivated" class="content-container">
             <program-setting></program-setting>
           </div>
         </div>
