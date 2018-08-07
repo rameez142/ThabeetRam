@@ -1,0 +1,13 @@
+.sidenav
+{
+    width: 250px;
+    margin-right: 10px;
+    height: 800px;
+    float: left;
+    background-color: lemonchiffon;
+}
+
+.topnav
+{
+background-color:#CCCCCC;    
+}

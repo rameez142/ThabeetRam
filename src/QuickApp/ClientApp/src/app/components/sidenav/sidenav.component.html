@@ -1,0 +1,16 @@
+
+<div class="form">
+  <h4>Store: Super Mart of the West</h4>
+  <dx-tree-view
+      id="selection-treeview"
+      [items]="products"
+      [width]="320"
+      showCheckBoxesMode="normal"
+      (onItemSelectionChanged)="selectionChanged($event)"
+  >
+      
+  </dx-tree-view>
+
+</div>
+
+<button class="btn" (click) = "SimulateDevices()" >SImulate</button>

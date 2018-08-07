@@ -18,6 +18,7 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { MapComponent } from './components/map/map.component';
 import { MapViewerComponent } from './components/mapviewer/mapviewer.component';
+import { LayoutComponent } from './components/map/layout/layout.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent, canActivate: [AuthGuard], data: { title: "Home" } },
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: "settings", component: SettingsComponent, canActivate: [AuthGuard], data: { title: "Settings" } },
   { path: "about", component: AboutComponent, data: { title: "About Us" } },
   { path: "maptracking", component: MapComponent, data: { title: "Tracking" } },
+  { path: "maplayout", component: LayoutComponent, data: { title: "Map" } },
   { path: "mapviewer", component: MapViewerComponent, data: { title: "Viewer" } },
   { path: "home", redirectTo: "/", pathMatch: "full" },
   { path: "**", component: NotFoundComponent, data: { title: "Page Not Found" } }

@@ -1,6 +1,6 @@
 
 import { fadeInOut } from '../../services/animations';
-import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild, ElementRef ,OnDestroy} from '@angular/core';
 
 import * as mapboxgl from 'mapbox-gl';
 import * as urf from '@turf/turf';
@@ -9,7 +9,7 @@ import { AlertPromise } from '../../../../node_modules/@types/selenium-webdriver
 import { GeoJSONSource } from 'mapbox-gl';
 import { url } from 'inspector';
 import { filter } from '../../../../node_modules/rxjs/operators';
-
+import { SharedMapServiceService } from  '../../components/map/services/shared-map-service.service';
 let filter2: boolean, sim_fpop: any, sim_route_fpop: any, sim_fpop2: any;
 
 export type MapImageData = HTMLImageElement | ImageData | { width: number, height: number, data: Uint8Array | Uint8ClampedArray };
@@ -68,7 +68,10 @@ export class MapComponent implements OnInit {
 
   lat = 51.51503213033115;
   lng = 25.303961620211695;
-  constructor() {
+  subscription:any;
+
+
+  constructor(private someSharedService : SharedMapServiceService) {
     Object.getOwnPropertyDescriptor(mapboxgl, "accessToken").set(environment.mapbox.accessToken);
     mapboxgl.setRTLTextPlugin('assets/scripts/mapbox-gl-rtl-text.js', this.ChngLng);
 
@@ -76,11 +79,15 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
 
-
+    this.subscription= this.someSharedService.SimulateObsrv
+    .subscribe(DeviceId => this.SimulateDevice(DeviceId))
     this.initializeMap()
 
     //this.map.on('load', this.addPatrol);
     //this.map.on('load', this.addTaxi);
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   private initializeMap() {
@@ -612,7 +619,7 @@ export class MapComponent implements OnInit {
     }, 100);
   }
 
-  SimulateDevice(): void {
+  SimulateDevice(DeviceId?: any): void {
     this.map.flyTo({
       center: [51.51503213033115, 25.303961620211695],
       zoom: 14

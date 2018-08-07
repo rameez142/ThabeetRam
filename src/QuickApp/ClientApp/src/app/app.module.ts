@@ -71,8 +71,11 @@ import { MapLeftNavDemoComponent } from "./components/controls/map-left-nav.comp
 
 import { MapComponent } from './components/map/map.component';
 import { MapViewerComponent } from './components/mapviewer/mapviewer.component';
-
-
+import { LayoutComponent } from './components/map/layout/layout.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { DxTreeViewModule } from "../../node_modules/devextreme-angular";
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+//import {SharedMapServiceService} from "./components/map/services/shared-map-service.service"
 @NgModule({
   imports: [
     BrowserModule,
@@ -93,7 +96,7 @@ import { MapViewerComponent } from './components/mapviewer/mapviewer.component';
     BsDropdownModule.forRoot(),
     CarouselModule.forRoot(),
     ModalModule.forRoot(),
-    ChartsModule
+    ChartsModule,DxTreeViewModule
   ],
   declarations: [
     AppComponent,
@@ -119,7 +122,10 @@ import { MapViewerComponent } from './components/mapviewer/mapviewer.component';
     BootstrapDatepickerDirective,
     GroupByPipe,
     MapComponent,
-    MapViewerComponent
+    MapViewerComponent,
+    LayoutComponent,
+    SidenavComponent
+    //SharedMapServiceService
   ],
   providers: [
     { provide: 'BASE_URL', useFactory: getBaseUrl },
@@ -142,7 +148,7 @@ export class AppModule {
 
 
 
-
+//platformBrowserDynamic().bootstrapModule(AppModule);
 export function getBaseUrl() {
   return document.getElementsByTagName('base')[0].href;
 }
