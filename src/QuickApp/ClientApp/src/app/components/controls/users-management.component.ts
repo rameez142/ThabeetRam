@@ -1,5 +1,5 @@
 // ====================================================
-// More Templates: https://www.ebenmonney.com/templates
+
 // Email: support@ebenmonney.com
 // ====================================================
 
