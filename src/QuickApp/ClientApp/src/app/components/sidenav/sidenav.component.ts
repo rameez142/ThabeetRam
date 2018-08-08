@@ -1,4 +1,4 @@
-import { NgModule, Component } from '@angular/core';
+import { NgModule, Component ,ViewChild, ElementRef} from '@angular/core';
 import { DxTreeViewModule, DxListModule, DxTemplateModule } from 'devextreme-angular';
 import { Product, Service } from '../../services/sidenav.service'
 import { SharedMapServiceService } from  '../../components/map/services/shared-map-service.service'
@@ -11,6 +11,8 @@ import { SharedMapServiceService } from  '../../components/map/services/shared-m
     providers: [Service]
 })
 export class SidenavComponent {
+    @ViewChild('ipt') RngSlid: ElementRef;
+    public sim_txt: string = 'Pause Simulation';
     products: Product[];
     checkedItems: Product[] = [];
 
@@ -68,12 +70,21 @@ this.someSharedService.SimulateDevices(1);
 
 PauseSimulation()
 {
-    this.someSharedService.PausseSimulation(1);
+    if (this.sim_txt === 'Resume Simulate') {
+        this.someSharedService.ResumeSimulation(1);
+        this.sim_txt = 'Stop Simulate';
+  
+      }
+      else {
+        this.someSharedService.PausseSimulation(1);
+        this.sim_txt = 'Resume Simulate';
+      }
+   
 }
 
 RngSlider_Simulate()
 {
-
+    this.someSharedService.RngSlider_Simulate(parseInt(this.RngSlid.nativeElement.value));
 }
 
 Simulate_By_Route_Device()
