@@ -1,6 +1,6 @@
 
 import { fadeInOut } from '../../services/animations';
-import { Component, OnInit, NgZone, ViewChild, ElementRef ,OnDestroy} from '@angular/core';
+import { Component, OnInit, NgZone ,OnDestroy} from '@angular/core';
 
 import * as mapboxgl from 'mapbox-gl';
 import * as urf from '@turf/turf';
@@ -27,7 +27,8 @@ export interface MapImageOptions {
 })
 
 export class MapComponent implements OnInit {
-  @ViewChild('ipt') RngSlid: ElementRef;
+  //@ViewChild('ipt') RngSlid: ElementRef;
+  public ZoomVal:any = 0;
   public map: mapboxgl.Map;
   public Sim_Point2: any;
   public Patrol_Point: any;
@@ -68,8 +69,12 @@ export class MapComponent implements OnInit {
 
   lat = 51.51503213033115;
   lng = 25.303961620211695;
-  subscription:any;
 
+  subscription:any;
+  pause_simulate_subscription:any;
+  simulate_route_subscription:any;
+  resume_simulate_subscription:any;
+  range_simulate_subscription:any;
 
   constructor(private someSharedService : SharedMapServiceService) {
     Object.getOwnPropertyDescriptor(mapboxgl, "accessToken").set(environment.mapbox.accessToken);
@@ -81,6 +86,20 @@ export class MapComponent implements OnInit {
 
     this.subscription= this.someSharedService.SimulateObsrv
     .subscribe(DeviceId => this.SimulateDevice(DeviceId))
+
+    this.pause_simulate_subscription = this.someSharedService.PauseSimulateObsrv
+    .subscribe(DeviceId => this.stopSimulateDevice())
+
+    this.resume_simulate_subscription = this.someSharedService.ResumeimulateObsrv
+    .subscribe(DeviceId => this.ResumeSimulateDevice())
+
+    this.simulate_route_subscription = this.someSharedService.SimulateRouteObsrv
+    .subscribe(DeviceId => this.Simulate_By_Route_Device(DeviceId))
+
+    
+    this.range_simulate_subscription = this.someSharedService.RangeSimObsrv
+    .subscribe(RngSimVal => this.RngIn(RngSimVal))
+
     this.initializeMap()
 
     //this.map.on('load', this.addPatrol);
@@ -99,16 +118,21 @@ export class MapComponent implements OnInit {
   }
 
   buildMap() {
-
+this.ZoomVal = 14;
     this.map = new mapboxgl.Map({
       container: 'map',
       style: this.style,
-      zoom: 14,
+      zoom: this.ZoomVal,
       center: [this.lng, this.lat]
     });
+   /*  var logoContainer:any = document.getElementById("logoContainer");
+    var mapControlsContainer:any = document.getElementById("map");
+
+    mapControlsContainer.appendChild(logoContainer); */
+    this.ZoomVal = 13;
     this.map.flyTo({
       center: [51.51503213033115, 25.303961620211695],
-      zoom: 13
+      zoom: this.ZoomVal
     });
     this.map.addControl(new mapboxgl.NavigationControl());
     this.map.on('style.load', () => {
@@ -164,7 +188,7 @@ export class MapComponent implements OnInit {
 
           this.map.on('click', this.addMarker);
           this.map.on('contextmenu', this.addPopUp);
-          this.map.addControl(new mapboxgl.FullscreenControl(), 'top-left');
+         // this.map.addControl(new mapboxgl.FullscreenControl(), 'top-left');
 
         }
 
@@ -175,9 +199,36 @@ export class MapComponent implements OnInit {
 
 
   }
+  SetFlag()
+  {
+    filter2 = !filter2;
+   // alert(filter2)
+  }
+ 
+  ZoomIn()
+  {
+    this.ZoomVal =  this.ZoomVal  + 1;
+   // this.map.zoom = this.ZoomVal;
+    this.map.flyTo({
+      zoom:  this.ZoomVal
+    });
+  }
+
+  ZoomOut()
+  {
+    if( this.ZoomVal != 0)
+    {
+      this.ZoomVal =  this.ZoomVal  - 1;
+       this.map.flyTo({
+         zoom:  this.ZoomVal
+       });
+    }
+   
+  }
 
   chngstyle(e) {
-    this.style = 'mapbox://styles/mapbox/' + e.target.id + '-v9';
+    console.log(e);
+    this.style = 'mapbox://styles/mapbox/' + e.target.value + '-v9';
     window.clearInterval(this.Sim_Route_timer)
     window.clearInterval(this.Sim_timer)
     this.removealllayers();
@@ -382,7 +433,7 @@ export class MapComponent implements OnInit {
   }
 
   addMarker(e) {
-  
+ 
 
     if (filter2 == true) {
       var e1 = document.createElement('div');
@@ -470,10 +521,12 @@ export class MapComponent implements OnInit {
   public Sim_Route_rndcntr: number = 5000;
   public Sim_Route_rndm: any;
   public Sim_Route_lineDistance: any;
-  Simulate_By_Route_Device(): void {
+
+  Simulate_By_Route_Device(DeviceId?: any): void {
+    this.ZoomVal = 14;
     this.map.flyTo({
       center: [51.514702218254286, 25.30427200090172],
-      zoom: 14
+      zoom: this.ZoomVal 
     });
 
     this.Sim_Route_origin = [51.514702218254286, 25.30427200090172];
@@ -620,9 +673,10 @@ export class MapComponent implements OnInit {
   }
 
   SimulateDevice(DeviceId?: any): void {
+    this.ZoomVal = 14;
     this.map.flyTo({
       center: [51.51503213033115, 25.303961620211695],
-      zoom: 14
+      zoom:  this.ZoomVal 
     });
 
     this.Sim_origin = [51.51503213033115, 25.303961620211695];
@@ -783,7 +837,7 @@ export class MapComponent implements OnInit {
       if (this.Sim_Counter > 10) {
         this.Sim_Counter = 0;
       }
-      this.RngSlid.nativeElement.value = this.Sim_Counter;
+      //this.RngSlid.nativeElement.value = this.Sim_Counter;
 
       this.Sim_Point.features[0].geometry.coordinates = this.Sim_Cordinates[this.Sim_Counter];
       this.Sim_Point.features[0].properties.bearing = urf.bearing(
@@ -832,20 +886,14 @@ export class MapComponent implements OnInit {
   }
   stopSimulateDevice(): void {
 
-    if (this.sim_txt === 'Resume Simulate') {
-      this.ResumeSimulateDevice();
-      this.sim_txt = 'Stop Simulate';
-
-    }
-    else {
       window.clearInterval(this.Sim_timer);
       this.sim_txt = 'Resume Simulate';
-    }
+    
   }
-  RngIn(): void {
+  RngIn(RngSimval): void {
     //alert(e.target.value)
     // this.stopSimulateDevice();
-    this.Sim_Counter = parseInt(this.RngSlid.nativeElement.value);
+    this.Sim_Counter = parseInt(RngSimval);
     // this.ResumeSimulateDevice();
 
   }

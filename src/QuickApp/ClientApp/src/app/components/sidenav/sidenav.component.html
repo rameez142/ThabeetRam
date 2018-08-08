@@ -1,6 +1,6 @@
 
-<div class="form">
-  <h4>Store: Super Mart of the West</h4>
+<div class="form" style="width:400px;">
+  
   <dx-tree-view
       id="selection-treeview"
       [items]="products"
@@ -12,5 +12,24 @@
   </dx-tree-view>
 
 </div>
+<div class="Simulate_Div">
+  <fieldset class="Simulate_fieldset"><legend class="Simulate_legend">Simulate</legend>
+<table class="tblsim">
+    <tr>
+      <td>
+<button style="width:120px;"   (click) = "SimulateDevices()" >Simulate Device</button>
+</td>
+<td><button style="width:120px;" (click) = "PauseSimulation()" >{{sim_txt}}</button></td>
+</tr>
+<tr>
+  <td colspa="2"><div data-role="rangeslider" class="slidecontainer"  >
+      <input type="range" width="200" min="2" max="10" class="slider" value="1" (input)="RngSlider_Simulate()" id="myRange" #ipt>
+    </div></td>
+</tr>
+<tr>
+  <td colspan="2"><button style="width:230px;" (click)="Simulate_By_Route_Device()">Simulate Device By Route</button></td>
+</tr>
+</table>
 
-<button class="btn" (click) = "SimulateDevices()" >SImulate</button>
+</fieldset>
+</div>
