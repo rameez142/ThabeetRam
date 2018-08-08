@@ -124,6 +124,11 @@ export class MapComponent implements OnInit {
       zoom: 14,
       center: [this.lng, this.lat]
     });
+   /*  var logoContainer:any = document.getElementById("logoContainer");
+    var mapControlsContainer:any = document.getElementById("map");
+
+    mapControlsContainer.appendChild(logoContainer); */
+
     this.map.flyTo({
       center: [51.51503213033115, 25.303961620211695],
       zoom: 13
@@ -193,9 +198,15 @@ export class MapComponent implements OnInit {
 
 
   }
+  SetFlag()
+  {
+    filter2 = !filter2;
+   // alert(filter2)
+  }
 
   chngstyle(e) {
-    this.style = 'mapbox://styles/mapbox/' + e.target.id + '-v9';
+    console.log(e);
+    this.style = 'mapbox://styles/mapbox/' + e.target.value + '-v9';
     window.clearInterval(this.Sim_Route_timer)
     window.clearInterval(this.Sim_timer)
     this.removealllayers();
@@ -400,7 +411,7 @@ export class MapComponent implements OnInit {
   }
 
   addMarker(e) {
-  
+ 
 
     if (filter2 == true) {
       var e1 = document.createElement('div');
