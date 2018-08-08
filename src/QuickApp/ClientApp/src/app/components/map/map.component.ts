@@ -28,6 +28,7 @@ export interface MapImageOptions {
 
 export class MapComponent implements OnInit {
   //@ViewChild('ipt') RngSlid: ElementRef;
+  public ZoomVal:any = 0;
   public map: mapboxgl.Map;
   public Sim_Point2: any;
   public Patrol_Point: any;
@@ -117,21 +118,21 @@ export class MapComponent implements OnInit {
   }
 
   buildMap() {
-
+this.ZoomVal = 14;
     this.map = new mapboxgl.Map({
       container: 'map',
       style: this.style,
-      zoom: 14,
+      zoom: this.ZoomVal,
       center: [this.lng, this.lat]
     });
    /*  var logoContainer:any = document.getElementById("logoContainer");
     var mapControlsContainer:any = document.getElementById("map");
 
     mapControlsContainer.appendChild(logoContainer); */
-
+    this.ZoomVal = 13;
     this.map.flyTo({
       center: [51.51503213033115, 25.303961620211695],
-      zoom: 13
+      zoom: this.ZoomVal
     });
     this.map.addControl(new mapboxgl.NavigationControl());
     this.map.on('style.load', () => {
@@ -187,7 +188,7 @@ export class MapComponent implements OnInit {
 
           this.map.on('click', this.addMarker);
           this.map.on('contextmenu', this.addPopUp);
-          this.map.addControl(new mapboxgl.FullscreenControl(), 'top-left');
+         // this.map.addControl(new mapboxgl.FullscreenControl(), 'top-left');
 
         }
 
@@ -202,6 +203,27 @@ export class MapComponent implements OnInit {
   {
     filter2 = !filter2;
    // alert(filter2)
+  }
+ 
+  ZoomIn()
+  {
+    this.ZoomVal =  this.ZoomVal  + 1;
+   // this.map.zoom = this.ZoomVal;
+    this.map.flyTo({
+      zoom:  this.ZoomVal
+    });
+  }
+
+  ZoomOut()
+  {
+    if( this.ZoomVal != 0)
+    {
+      this.ZoomVal =  this.ZoomVal  - 1;
+       this.map.flyTo({
+         zoom:  this.ZoomVal
+       });
+    }
+   
   }
 
   chngstyle(e) {
@@ -501,9 +523,10 @@ export class MapComponent implements OnInit {
   public Sim_Route_lineDistance: any;
 
   Simulate_By_Route_Device(DeviceId?: any): void {
+    this.ZoomVal = 14;
     this.map.flyTo({
       center: [51.514702218254286, 25.30427200090172],
-      zoom: 14
+      zoom: this.ZoomVal 
     });
 
     this.Sim_Route_origin = [51.514702218254286, 25.30427200090172];
@@ -650,9 +673,10 @@ export class MapComponent implements OnInit {
   }
 
   SimulateDevice(DeviceId?: any): void {
+    this.ZoomVal = 14;
     this.map.flyTo({
       center: [51.51503213033115, 25.303961620211695],
-      zoom: 14
+      zoom:  this.ZoomVal 
     });
 
     this.Sim_origin = [51.51503213033115, 25.303961620211695];
