@@ -75,5 +75,11 @@ RngSlider_Simulate()
 {
 
 }
+
+Simulate_By_Route_Device()
+{
+    this.someSharedService.Simulate_By_Route_Device(1);
+}
+
 }
 

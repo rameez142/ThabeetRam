@@ -70,7 +70,7 @@ export class MapComponent implements OnInit {
   lng = 25.303961620211695;
   subscription:any;
   pause_simulate_subscription:any;
-
+  simulate_route_subscription:any;
 
   constructor(private someSharedService : SharedMapServiceService) {
     Object.getOwnPropertyDescriptor(mapboxgl, "accessToken").set(environment.mapbox.accessToken);
@@ -82,9 +82,12 @@ export class MapComponent implements OnInit {
 
     this.subscription= this.someSharedService.SimulateObsrv
     .subscribe(DeviceId => this.SimulateDevice(DeviceId))
-    
+
     this.pause_simulate_subscription = this.someSharedService.PauseSimulateObsrv
     .subscribe(DeviceId => this.stopSimulateDevice())
+
+    this.simulate_route_subscription = this.someSharedService.SimulateRouteObsrv
+    .subscribe(DeviceId => this.Simulate_By_Route_Device(DeviceId))
 
     this.initializeMap()
 
@@ -475,7 +478,8 @@ export class MapComponent implements OnInit {
   public Sim_Route_rndcntr: number = 5000;
   public Sim_Route_rndm: any;
   public Sim_Route_lineDistance: any;
-  Simulate_By_Route_Device(): void {
+
+  Simulate_By_Route_Device(DeviceId?: any): void {
     this.map.flyTo({
       center: [51.514702218254286, 25.30427200090172],
       zoom: 14

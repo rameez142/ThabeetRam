@@ -6,8 +6,11 @@ export class SharedMapServiceService {
   public DeviceId:any;
   @Output() SimulateEvnt: EventEmitter<number> = new EventEmitter();
   @Output() PauseSimulateEvnt: EventEmitter<number> = new EventEmitter();
+  @Output() SimulateRouteEvnt: EventEmitter<number> = new EventEmitter();
+
   SimulateObsrv = this.SimulateEvnt.asObservable();
   PauseSimulateObsrv = this.PauseSimulateEvnt.asObservable();
+  SimulateRouteObsrv = this.SimulateRouteEvnt.asObservable();
 
   constructor() { }
  
@@ -21,6 +24,12 @@ public PausseSimulation(DeviceId: any) {
   this.DeviceId = DeviceId;
   console.log('Pause Device Shared ' + DeviceId);
   this.PauseSimulateEvnt.emit(DeviceId)
+}
+
+public Simulate_By_Route_Device(DeviceId: any) {
+  this.DeviceId = DeviceId;
+  console.log('Pause Device Shared ' + DeviceId);
+  this.SimulateRouteEvnt.emit(DeviceId)
 }
 
 }
