@@ -4,7 +4,7 @@
   </header>
 
   <div [@fadeInOut] class="row">
-    <div class="col-sm-2 side-menu">
+    <div class="col-sm-6 side-menu">
       <ul bootstrapTab #tab="bootstrap-tab" class="nav nav-tabs tabs-left" (showBSTab)="onShowTab($event)">
         <li class="active">
           <a id="profileTab" [routerLink]="[]" fragment="profile" href="#profile" data-toggle="tab"><i class="fa fa-user-circle-o fa-fw" aria-hidden="true"></i> {{'settings.tab.Profile' | translate}}</a>
