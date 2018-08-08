@@ -66,6 +66,14 @@ export class SidenavComponent {
 this.someSharedService.SimulateDevices(1);
 }
 
+PauseSimulation()
+{
+    this.someSharedService.PausseSimulation(1);
+}
 
+RngSlider_Simulate()
+{
+
+}
 }
 

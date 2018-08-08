@@ -69,6 +69,7 @@ export class MapComponent implements OnInit {
   lat = 51.51503213033115;
   lng = 25.303961620211695;
   subscription:any;
+  pause_simulate_subscription:any;
 
 
   constructor(private someSharedService : SharedMapServiceService) {
@@ -81,6 +82,10 @@ export class MapComponent implements OnInit {
 
     this.subscription= this.someSharedService.SimulateObsrv
     .subscribe(DeviceId => this.SimulateDevice(DeviceId))
+    
+    this.pause_simulate_subscription = this.someSharedService.PauseSimulateObsrv
+    .subscribe(DeviceId => this.stopSimulateDevice())
+
     this.initializeMap()
 
     //this.map.on('load', this.addPatrol);

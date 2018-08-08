@@ -13,4 +13,8 @@
 
 </div>
 
-<button class="btn" (click) = "SimulateDevices()" >SImulate</button>
+<button class="btn" (click) = "SimulateDevices()" >Simulate Device</button>
+<div data-role="rangeslider" style="width:100px;">
+  <input type="range" width="50" min="2" max="10" value="1" (input)="RngSlider_Simulate()" id="myRange" #ipt>
+</div>
+<button class="btn" (click) = "PauseSimulation()" >Pause Simulation</button>
