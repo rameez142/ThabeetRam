@@ -76,6 +76,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { DxTreeViewModule } from "../../node_modules/devextreme-angular";
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { TopnavComponent } from './components/topnav/topnav.component';
+
 //import {SharedMapServiceService} from "./components/map/services/shared-map-service.service"
 @NgModule({
   imports: [
@@ -127,7 +128,6 @@ import { TopnavComponent } from './components/topnav/topnav.component';
     LayoutComponent,
     SidenavComponent,
     TopnavComponent
-    //SharedMapServiceService
   ],
   providers: [
     { provide: 'BASE_URL', useFactory: getBaseUrl },

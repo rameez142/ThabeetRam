@@ -1,9 +1,52 @@
 <div class="container">
+<form (ngSubmit)="onSubmit()">
     <header class="pageHeader">
         <h3><i class="fa fa-truck fa-lg page-caption" aria-hidden="true"></i> {{'pageHeader.Products' | translate}}</h3>
     </header>
+  
+    <div class="row col-md-20 row-inline">
+               
+                    <div class="form-group form-inline col-md-5  pull-right">
+                        <label for="drivername"  class="control-label col-md-3 pull-right" >Full Name</label>
+                         <input type="text" class="form-control col-md-2 pull-right" id="drivername">
+                    </div>
 
-    <div [@fadeInOut]>
-        <span class="text-muted">-- Sample Page --</span>
-    </div>
+                    <div class="form-group form-inline col-md-5  pull-right">
+                            <label for="IDNumber"  class="control-label col-md-3 pull-right" >ID Number</label>
+                             <input type="text" class="form-control col-md-2 pull-right" id="IDNumber">
+                        </div>
+
+                        <div class="form-group form-inline col-md-5  pull-right" >
+                                <label for="TelNumber"  class="control-label col-md-3 pull-right" >Telephone Number</label>
+                                 <input type="text" class="form-control col-md-2 pull-right" id="TelNumber">
+                            </div>
+
+                            <div class="form-group form-inline col-md-6  pull-right">
+                                    <label for="EmpNumber"  class="control-label col-md-4 pull-right" >Employee Number</label>
+                                     <input type="text" class="form-control col-md-2 pull-right" id="EmpNumber">
+                                </div>
+
+                                <div class="form-group form-inline col-md-6  pull-right">
+                                        <label for="DCardNumber"  class="control-label col-md-4 pull-right" >Driver Card Number</label>
+                                         <input type="text" class="form-control col-md-2 pull-right" id="DCardNumber">
+                                    </div>
+
+            
+     </div>
+     <div class="row col-md-40">
+            <button type="submit" class="btn btn-primary pull-right" >Search</button>
+     </div>
+    
+
+<ngx-datatable class="material colored-header sm table table-striped table-hover"
+[loadingIndicator]="loadingIndicator"
+[rows]="rows"
+[rowHeight]="35"
+[headerHeight]="35"
+[footerHeight]="35"
+[columns]="columns"
+[scrollbarV]="true"
+[columnMode]="'force'">
+</ngx-datatable>
+</form>
 </div>
