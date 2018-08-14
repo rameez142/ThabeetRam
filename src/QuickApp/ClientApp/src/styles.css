@@ -5,6 +5,11 @@
 @import 'app/assets/styles/ngx-datatable.css';
 @import 'app/assets/styles/themes.css';
 
+.container {
+  width: 100% !important;
+  padding: 2px !important;
+}
+
 .navbar .nav li a:hover,
 .navbar.nav li.toolbaritem a:hover,
 .nav.nav-tabsNOTUSE li a:hover {
