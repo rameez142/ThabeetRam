@@ -1,55 +1,59 @@
 <div class="container">
-<form (ngSubmit)="onSubmit()">
+  <form (ngSubmit)="onSubmit()" method="post" enctype="multipart/form-data">
     <header class="pageHeader">
-        <h3><i class="fa fa-truck fa-lg page-caption" aria-hidden="true"></i> {{'pageHeader.Products' | translate}}</h3>
+      <h3><i class="fa fa-truck fa-lg page-caption" aria-hidden="true"></i> {{'pageHeader.Products' | translate}}</h3>
     </header>
-  
+
     <div class="row col-md-14 row-inline">
-               
-                    <div class="form-group form-inline col-md-3  pull-right">
-                        <label for="drivername"  class="control-label col-md-2 pull-right" > Name</label>
-                         <input type="text" class="form-control col-md-1 pull-right" id="drivername">
-                    </div>
 
-                    <div class="form-group form-inline col-md-3  pull-right">
-                            <label for="IDNumber"  class="control-label col-md-2 pull-right" >ID </label>
-                             <input type="text" class="form-control col-md-1 pull-right" id="IDNumber">
-                        </div>
+      <div class="form-group form-inline col-md-3  pull-right">
+        <label for="drivername" class="control-label col-md-2 pull-right"> Name</label>
+        <input type="text" class="form-control col-md-1 pull-right" id="drivername">
+      </div>
 
-                        <div class="form-group form-inline col-md-3  pull-right" >
-                                <label for="TelNumber"  class="control-label col-md-2 pull-right" >Telephone </label>
-                                 <input type="text" class="form-control col-md-1 pull-right" id="TelNumber">
-                            </div>
+      <div class="form-group form-inline col-md-3  pull-right">
+        <label for="IDNumber" class="control-label col-md-2 pull-right">ID </label>
+        <input type="text" class="form-control col-md-1 pull-right" id="IDNumber">
+      </div>
 
-                            <div class="form-group form-inline col-md-3  pull-right">
-                                    <label for="EmpNumber"  class="control-label col-md-2 pull-right" >EmpNo</label>
-                                     <input type="text" class="form-control col-md-1 pull-right" id="EmpNumber">
-                                </div>
+      <div class="form-group form-inline col-md-3  pull-right">
+        <label for="TelNumber" class="control-label col-md-2 pull-right">Telephone </label>
+        <input type="text" class="form-control col-md-1 pull-right" id="TelNumber">
+      </div>
 
-                                <div class="form-group form-inline col-md-4  pull-right">
-                                        <label for="DCardNumber"  class="control-label col-md-3 pull-right" >Card No</label>
-                                         <input type="text" class="form-control col-md-1 pull-right" id="DCardNumber">
-                                         
-                                    </div>
-                                    <div class="form-group form-inline col-md-2  pull-right">
-                                            <button type="submit" class="btn btn-primary pull-right" >Search</button>
-                                        </div>
-                                   
-     </div>
-   
-     <div class="row col-md-8 col-md-offset-2">
-            <ngx-datatable class="material colored-header sm table table-striped table-hover"
-            [loadingIndicator]="loadingIndicator"
-            [rows]="rows"
-            [rowHeight]="35"
-            [headerHeight]="35"
-            [footerHeight]="35"
-            [columns]="columns"
-            [scrollbarV]="true"
-            [columnMode]="'force'">
-            </ngx-datatable>
-            </div>
+      <div class="form-group form-inline col-md-3  pull-right">
+        <label for="EmpNumber" class="control-label col-md-2 pull-right">EmpNo</label>
+        <input type="text" class="form-control col-md-1 pull-right" id="EmpNumber">
+      </div>
+
+      <div class="form-group form-inline col-md-4  pull-right">
+        <label for="DCardNumber" class="control-label col-md-3 pull-right">Card No</label>
+        <input type="text" class="form-control col-md-1 pull-right" id="DCardNumber">
+
+      </div>
+      <div class="form-group form-inline col-md-2  pull-right">
+        <button type="submit" class="btn btn-primary pull-right">Search</button>
+      </div>
+      <div class="form-group form-inline col-md-6 pull-right" >
+          <input type="file" name="photo" (change) = "Fileuploadclick($event)" />
+          <button class="btn btn-primary pull-right" (click) = "CallUpload()">Upload</button>
+      </div>
+    </div>
+    
+
+    <div class="row col-md-8 col-md-offset-2">
+      <ngx-datatable class="material colored-header sm table table-striped table-hover"
+                     [loadingIndicator]="loadingIndicator"
+                     [rows]="rows"
+                     [rowHeight]="35"
+                     [headerHeight]="35"
+                     [footerHeight]="35"
+                     [columns]="columns"
+                     [scrollbarV]="true"
+                     [columnMode]="'force'">
+      </ngx-datatable>
+    </div>
 
 
-</form>
+  </form>
 </div>

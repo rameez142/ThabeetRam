@@ -68,6 +68,15 @@ export class SharedMapServiceService {
 
 
   }
+
+  public UploadFiles(frm:FormData)
+  {
+
+     return this.http.post('http://localhost:64430/api/map',frm, {responseType: 'text'});
+   
+
+  }
+ 
  
   public SimulateDevices(DeviceId: any) {
     this.DeviceId = DeviceId;

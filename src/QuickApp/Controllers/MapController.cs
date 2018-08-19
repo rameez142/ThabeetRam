@@ -6,11 +6,25 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Data.SqlClient;
+using System.Net.Http;
+using System.Web.Http;
+using System.IO;
+using Microsoft.AspNetCore.Http;
+using System.Threading;
 
 
-namespace MOI.AssetManagement.Controllers { 
+namespace MOI.AssetManagement.Controllers {
+    public class FileUploadVwModal
+    {
+       public IFormFile File { get; set; }
+        public long Size { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+    }
 
-public class QryString
+    
+
+    public class QryString
 {
     public string Qry { get; set; }
 }
@@ -44,5 +58,40 @@ public class QryString
 
             return dt;
         }
+
+        [HttpPost]
+        public async Task<IActionResult>PostUpload(FileUploadVwModal modal)
+        {
+            var file = modal.File;
+            using (var fs = new FileStream("C://dt.doc", FileMode.Create))
+            {
+                file.CopyTo(fs);
+            }
+               return Ok(modal);
+        }
+
+        /*  public async Task<IActionResult> Post(List<IFormFile> files)
+          {
+              long size = files.Sum(f => f.Length);
+
+              // full path to file in temp location
+              var filePath = Path.GetTempFileName();
+
+              foreach (var formFile in files)
+              {
+                  if (formFile.Length > 0)
+                  {
+                      using (var stream = new FileStream(filePath, FileMode.Create))
+                      {
+                          await formFile.CopyToAsync(stream);
+                      }
+                  }
+              }
+
+
+              return Ok(new { count = files.Count, size, filePath });
+          }*/
     }
+
+
 }
